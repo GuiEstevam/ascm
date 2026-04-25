@@ -3,6 +3,12 @@ import { resolve } from 'node:path';
 
 export default defineConfig({
   base: '/',
+  resolve: {
+    dedupe: ['ionicons', '@stencil/core'],
+  },
+  optimizeDeps: {
+    include: ['ionicons', 'ionicons/loader'],
+  },
   build: {
     esbuild: {
       drop: ['console', 'debugger'],

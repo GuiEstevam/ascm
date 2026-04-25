@@ -1,6 +1,6 @@
 import '../css/styles.css';
 import 'swiper/css';
-import { addIcons } from 'ionicons';
+import { addIcons, setAssetPath } from 'ionicons';
 import Swiper from 'swiper';
 import { Navigation, A11y } from 'swiper/modules';
 import {
@@ -32,6 +32,9 @@ import footerHtml from '../partials/footer.html?raw';
 import { WHATSAPP_HREF } from './site-config.js';
 import { buildJsonLd } from './json-ld.js';
 
+// Fallback de SVGs do ion-icon (alinhado à versão `ionicons` no package.json).
+setAssetPath('https://cdn.jsdelivr.net/npm/ionicons@8.0.13/dist/ionicons/');
+
 addIcons({
   'bar-chart-outline': barChartOutline,
   'business-outline': businessOutline,
@@ -55,8 +58,6 @@ addIcons({
   'people-outline': peopleOutline,
   'receipt-outline': receiptOutline,
 });
-
-void defineCustomElements(window);
 
 function setActiveNav(pageId) {
   const header = document.getElementById('site-header');
@@ -432,14 +433,20 @@ function initClientLogoFallbacks() {
   });
 }
 
-const pageId = document.documentElement.dataset.page ?? '';
+async function bootstrap() {
+  await defineCustomElements(window);
 
-mountPartials();
-setActiveNav(pageId);
-initMobileNav();
-initHeaderScrollBehavior(pageId);
-mountJsonLd();
-initContactForm();
-initHomeAreasCarousel();
-initAreasPageCarousel();
-initClientLogoFallbacks();
+  const pageId = document.documentElement.dataset.page ?? '';
+
+  mountPartials();
+  setActiveNav(pageId);
+  initMobileNav();
+  initHeaderScrollBehavior(pageId);
+  mountJsonLd();
+  initContactForm();
+  initHomeAreasCarousel();
+  initAreasPageCarousel();
+  initClientLogoFallbacks();
+}
+
+void bootstrap();
