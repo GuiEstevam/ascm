@@ -1,0 +1,29 @@
+---
+description: ASCM — HTML, CSS e JS (Vite + partials raw)
+globs: "**/*.{html,css,js}"
+alwaysApply: false
+---
+
+# ASCM — front-end
+
+## HTML
+
+- **CSS e JS em ficheiros externos.** Estrutura semântica: `header`, `main`, `footer`; um `h1` por página.
+- **Skip link** para `#main-content` (ou equivalente).
+- Atributos **`aria-*`** em botões de menu e formulários quando aplicável.
+
+## CSS
+
+- **Mobile-first**, variáveis CSS para paleta **corporativa azul** (ver `docs/PLANO-MVP.md`).
+- Para secções de destaque da Home (hero, destaques, áreas), validar comportamento também em **Full HD (1920x1080)** para evitar compressão ou espaços vazios excessivos.
+- Respeitar **`prefers-reduced-motion`** para animações não essenciais.
+
+## JavaScript
+
+- Um módulo principal (ex.: `main.js`) que importa o CSS, injeta partials e inicializa navegação (menu, link ativo por `data-page` ou pathname).
+- Formulário: validação de campos obrigatórios + checkbox LGPD antes de simular envio.
+
+## Navegação
+
+- Labels: Home, Quem Somos, Áreas de Atuação, Profissionais, Clientes, Contato.
+- **Não** incluir “Insights/Publicações” na nav principal no MVP.

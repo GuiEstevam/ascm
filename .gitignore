@@ -1,0 +1,58 @@
+# Dependencies
+node_modules/
+
+# Build
+dist/
+*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Environment and local overrides (Vite, Node, direnv, etc.)
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.*.example
+.secrets
+secrets/
+
+# Private keys, certs with keys, and keystores
+*.pem
+*.p12
+*.pfx
+id_rsa
+id_rsa.*
+id_ed25519
+id_ed25519.*
+*.jks
+*.keystore
+
+# Cloud / host metadata (link tokens, org IDs, etc., when present)
+.vercel/
+.netlify/
+.cloudflare/
+
+# Tool caches
+.cache/
+.turbo/
+.eslintcache
+.parcel-cache/
+*.stackdump
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# IDEs
+.history/
+.vs/
+.idea/

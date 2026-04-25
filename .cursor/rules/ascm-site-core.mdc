@@ -1,0 +1,41 @@
+---
+description: ASCM — stack, idioma, compliance contábil/LGPD e entrega (sempre aplicar)
+alwaysApply: true
+---
+
+# ASCM — regras gerais do site
+
+## Negócio
+
+- Projeto: **A.S. Couto & Monteiro Contadores Associados** (ASCM) — **perícias contábeis**, **ATC**, conteúdo B2B; não posicionar como escritório de advocacia principal.
+- Conteúdo e UI em **pt-BR** (`lang="pt-BR"`).
+
+## Stack e build
+
+- **Vite 5**, HTML5, **CSS** em ficheiro(s) dedicados(s), **JavaScript ES6+** modular.
+- **MPA:** várias entradas `.html` em `rollupOptions.input`.
+- **Partials:** incluir `nav` / `footer` via `import ... from '../partials/foo.html?raw'` no JS principal e injetar em `#site-header` / `#site-footer` (padrão tipo projeto Transcende).
+- **Produção:** `base: /` para Vercel/Netlify na raiz do domínio, salvo instrução contrária no `README`.
+
+## Leads e formulário (MVP)
+
+- Formulário: **nome, e-mail, assunto, mensagem** + **checkbox obrigatório** “Li a Política de Privacidade” com link para **`privacidade.html`**.
+- **Sem** envio real ao servidor no MVP (validação + estado de sucesso simulado ou mensagem clara).
+- **WhatsApp:** CTA permitido; número centralizado numa constante/config fácil de alterar.
+- **Sem** `alert()` / `confirm()` para feedback de UX — preferir mensagem inline ou padrão toast se existir.
+
+## Links e SEO
+
+- Links externos com `target="_blank"`: usar **`rel="noopener noreferrer"`**.
+- Cada página: `title`, `meta description`, Open Graph.
+- **JSON-LD:** `AccountingService`, `ProfessionalService`, `LocalBusiness` (NAP São Paulo), `Organization` — não usar `LegalService` como foco principal.
+
+## Compliance
+
+- **Disclaimer** institucional (informação geral; limites do canal digital) **só no rodapé** no MVP.
+- **CRC / OAB / números oficiais:** replicar apenas o que consta em `docs/PLANO-MVP.md` até validação do cliente.
+- **LGPD:** política em `privacidade.html`; se existir embed do Google Maps, mencionar cookies/privacidade na política.
+
+## Produção
+
+- **Não** deixar `console.log` / `debugger` na entrega final (ou configurar `esbuild.drop` em build de produção).
