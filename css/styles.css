@@ -307,7 +307,8 @@ body.nav-open .site-nav__toggle-line:last-child {
     border-top-color: rgba(255, 255, 255, 0.12);
   }
 
-  #site-header.is-overlay .site-nav__list a {
+  #site-header.is-overlay .site-nav__list a,
+  #site-header.is-overlay ~ [data-nav-panel] .site-nav__list a {
     color: #fff;
     border-bottom-color: rgba(255, 255, 255, 0.16);
   }
@@ -346,7 +347,8 @@ body.nav-open .site-nav__toggle-line:last-child {
     flex-shrink: 0;
   }
 
-  #site-header.is-overlay .site-nav__list a .site-nav__link-icon {
+  #site-header.is-overlay .site-nav__list a .site-nav__link-icon,
+  #site-header.is-overlay ~ [data-nav-panel] .site-nav__list a .site-nav__link-icon {
     color: var(--color-accent);
   }
 
