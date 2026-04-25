@@ -1,6 +1,5 @@
 import '../css/styles.css';
 import 'swiper/css';
-import { addIcons, setAssetPath } from 'ionicons';
 import Swiper from 'swiper';
 import { Navigation, A11y } from 'swiper/modules';
 import {
@@ -32,11 +31,7 @@ import footerHtml from '../partials/footer.html?raw';
 import { WHATSAPP_HREF } from './site-config.js';
 import { buildJsonLd } from './json-ld.js';
 
-// Fallback de SVGs do ion-icon (alinhado à versão `ionicons` no package.json).
-setAssetPath('https://cdn.jsdelivr.net/npm/ionicons@8.0.13/dist/ionicons/');
-defineIonIconElement();
-
-addIcons({
+const ION_ICON_SVG = {
   'bar-chart-outline': barChartOutline,
   'business-outline': businessOutline,
   'calculator-outline': calculatorOutline,
@@ -58,7 +53,19 @@ addIcons({
   'print-outline': printOutline,
   'people-outline': peopleOutline,
   'receipt-outline': receiptOutline,
-});
+};
+
+function normalizeIonIcons(root = document) {
+  const iconNodes = root.querySelectorAll('ion-icon[name]');
+  iconNodes.forEach((node) => {
+    const name = node.getAttribute('name');
+    if (!name) return;
+    const svgData = ION_ICON_SVG[name];
+    if (!svgData) return;
+    node.setAttribute('src', svgData);
+    node.removeAttribute('name');
+  });
+}
 
 function setActiveNav(pageId) {
   const header = document.getElementById('site-header');
@@ -436,7 +443,10 @@ function initClientLogoFallbacks() {
 
 const pageId = document.documentElement.dataset.page ?? '';
 
+normalizeIonIcons(document);
 mountPartials();
+normalizeIonIcons(document);
+defineIonIconElement();
 setActiveNav(pageId);
 initMobileNav();
 initHeaderScrollBehavior(pageId);
